@@ -84,12 +84,6 @@ python manage.py runserver
 
 ---
 
-## 📄 License
-
-MIT — do whatever you want, just keep the credit.
-
----
-
 <p align="center">
   Built with care by <strong>Raj G.</strong>
 </p>
