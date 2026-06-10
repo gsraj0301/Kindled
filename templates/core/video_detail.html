@@ -1,0 +1,47 @@
+{% extends 'core/base.html' %}
+
+{% block title %}{{ video.title }} — Kindled{% endblock %}
+
+{% block content %}
+
+<div class="video-detail">
+
+  <a href="{% url 'home' %}" class="back-link">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="15 18 9 12 15 6"/>
+    </svg>
+    Back to all videos
+  </a>
+
+  {% if video.embed_disabled %}
+  <div class="no-embed-box">
+    <img src="https://img.youtube.com/vi/{{ video.youtube_id }}/hqdefault.jpg" alt="{{ video.title }}" class="no-embed-thumb">
+    <div class="no-embed-body">
+      <p class="no-embed-title">{{ video.title }}</p>
+      <p class="no-embed-note">{{ video.curator_note }}</p>
+      <a href="https://www.youtube.com/watch?v={{ video.youtube_id }}" target="_blank" rel="noopener" class="watch-yt-btn">
+        Watch on YouTube →
+      </a>
+    </div>
+  </div>
+  {% else %}
+  <div class="video-wrapper">
+    <iframe src="https://www.youtube.com/embed/{{ video.youtube_id }}?rel=0&modestbranding=1"
+      title="{{ video.title }}" allowfullscreen></iframe>
+  </div>
+  {% endif %}
+  
+  <div class="video-info">
+    <h1>{{ video.title }}</h1>
+    <p class="video-channel">{{ video.channel_name }}</p>
+    {% if not video.embed_disabled %}
+    <div class="video-note">
+      <p style="font-size:0.7rem;font-weight:500;color:var(--accent);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:4px;">Why I picked this</p>
+      {{ video.curator_note }}
+    </div>
+    {% endif %}
+  </div>
+
+</div>
+
+{% endblock %}

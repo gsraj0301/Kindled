@@ -1,0 +1,73 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Kindled — Find your next lesson{% endblock %}
+
+{% block content %}
+
+<div class="pills-row">
+  <a href="{% url 'home' %}"
+     class="pill {% if not selected_category and not show_recommended %}active{% endif %}">
+    All
+  </a>
+  <a href="{% url 'home' %}?recommended=1"
+     class="pill {% if show_recommended %}active{% endif %}">
+    🌟 Recommended
+  </a>
+  {% for category in categories %}
+  <a href="{% url 'home' %}?category={{ category.slug }}"
+     class="pill {% if selected_category.slug == category.slug %}active{% endif %}">
+    {{ category.icon }} {{ category.name }}
+  </a>
+  {% endfor %}
+</div>
+
+<p style="font-family: var(--font-body); color: var(--muted); font-size: 0.875rem; max-width: 36em; margin: 1.5rem auto; text-align: center; line-height: 1.6;">
+  Every video here is personally watched and picked by a fellow student. No algorithms, no paid promotions — just the best free resources I've found, curated for you.
+</p>
+
+<div class="grid-section">
+  {% if show_recommended %}
+  <p class="count-label">🌟 {{ videos.count }} recommended video{{ videos.count|pluralize }} — must-watch picks</p>
+  {% else %}
+  <p class="count-label">{{ videos.count }} video{{ videos.count|pluralize }} — personally curated</p>
+  {% endif %}
+
+  <div class="grid">
+    {% for video in videos %}
+    <a href="{% url 'video_detail' video.youtube_id %}" class="card">
+      <div class="thumb">
+        <img
+          src="https://img.youtube.com/vi/{{ video.youtube_id }}/hqdefault.jpg"
+          alt="{{ video.title }}"
+          onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="thumb-placeholder" style="display:none">
+          <div class="play-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="white">
+              <polygon points="5 3 19 12 5 21 5 3"/>
+            </svg>
+          </div>
+        </div>
+        {% if video.recommended %}<span class="rec-badge">🌟 Recommended</span>{% endif %}
+        <span class="cat-badge">{{ video.category.name }}</span>
+      </div>
+      <div class="card-body">
+        <p class="card-title">{{ video.title }}</p>
+        <p class="card-channel">{{ video.channel_name }}</p>
+        <p class="card-note">{{ video.curator_note }}</p>
+      </div>
+    </a>
+    {% empty %}
+    <p class="empty-state">No videos in this category yet — check back soon.</p>
+    {% endfor %}
+  </div>
+
+  <p style="font-family: var(--font-body); font-size: 0.875rem; color: var(--muted); text-align: center; margin-top: 1.5rem;">
+    Don't see what you're looking for?
+    <a href="{% url 'suggest' %}"
+       style="color: var(--accent); text-decoration: none;"
+       onmouseover="this.style.textDecoration='underline'"
+       onmouseout="this.style.textDecoration='none'">Suggest a video</a>
+  </p>
+</div>
+
+{% endblock %}

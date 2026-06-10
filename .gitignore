@@ -1,0 +1,32 @@
+# Environment
+.env
+.venv/
+venv/
+env/
+
+# Database
+db.sqlite3
+*.db
+
+# Django
+*.pyc
+__pycache__/
+media/
+staticfiles/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Project memory
+KINDLED.md
+
+# Secrets
+secret*
+*key*.pem
