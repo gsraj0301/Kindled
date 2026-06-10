@@ -41,7 +41,7 @@ This site was born because I wanted a place where my college mates — and anyon
 - **🌟 Recommended section** — the must-watch picks with a dedicated filter and badge
 - **Distraction-free embeds** — no related videos, no recommendations, just the lesson
 - **Curator notes** — each video comes with a note explaining why it's worth your time
-- **Suggest a video** — found something great? Drop a link and I'll check it out
+- **Suggest a video** — can't find what you're looking for? Drop a link and I'll add it. This platform grows with your requests
 - **Fully responsive** — works on mobile and desktop
 
 ---
