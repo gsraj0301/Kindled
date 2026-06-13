@@ -69,6 +69,13 @@ Sure, it's not the most complex thing in the world. But 1,500+ visits later, I k
 
 ---
 
+## 🙏 Contributors
+
+- **Raj G.** — creator, developer, curator
+- **kieskishore-cyber** — designed the website logo & favicon
+
+---
+
 ## 📸 Preview
 
 ![Kindled website preview](screenshots/Kindled-website-preview.png)
