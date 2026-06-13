@@ -48,6 +48,12 @@ nav {
   color: var(--text);
 }
 
+.nav-logo img {
+  width: 34px;
+  height: 34px;
+  object-fit: contain;
+}
+
 .nav-tagline {
   font-family: var(--font-display);
   font-style: italic;
