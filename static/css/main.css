@@ -94,22 +94,35 @@ nav {
 .search-pill {
   display: flex;
   align-items: center;
-  gap: 6px;
-  padding: 6px 14px;
+  gap: 8px;
+  padding: 6px 12px;
   border: 1px solid var(--border);
   border-radius: 999px;
   background: var(--surface);
-  transition: border-color 0.2s, box-shadow 0.2s;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: text;
+}
+
+.search-pill:hover {
+  border-color: var(--muted);
+  background: var(--bg);
 }
 
 .search-pill:focus-within {
   border-color: var(--accent);
-  box-shadow: 0 0 0 3px rgba(249,115,22,0.1);
+  box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.15);
+  background: var(--surface);
+}
+
+.search-pill:hover .search-pill-icon {
+  color: var(--text);
+  transform: scale(1.1);
 }
 
 .search-pill-icon {
   flex-shrink: 0;
   color: var(--muted);
+  transition: all 0.2s ease;
 }
 
 .search-input {
@@ -117,17 +130,55 @@ nav {
   background: none;
   outline: none;
   font-family: var(--font-body);
-  font-size: 0.85rem;
+  font-size: 0.875rem;
   color: var(--text);
   width: 160px;
+  padding: 2px 0;
 }
 
 .search-input::placeholder {
   color: var(--muted);
+  transition: color 0.2s ease;
+}
+
+.search-pill:focus-within .search-input::placeholder {
+  color: #a1a1aa; /* slightly darker muted */
+}
+
+.search-clear-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2px;
+  border: none;
+  background: none;
+  color: var(--muted);
+  cursor: pointer;
+  border-radius: 50%;
+  transition: all 0.2s ease;
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(0.8);
+}
+
+.search-clear-btn.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1);
+}
+
+.search-clear-btn:hover {
+  background: var(--border);
+  color: var(--text);
 }
 
 .search-mobile-btn {
   display: none;
+  transition: transform 0.2s ease;
+}
+
+.search-mobile-btn:active {
+  transform: scale(0.9);
 }
 
 .suggest-btn {
@@ -578,24 +629,34 @@ nav {
   .nav-tagline { display: none; }
 
   .search-pill {
-    display: none;
+    display: flex;
     position: absolute;
-    top: 100%;
+    top: calc(100% + 8px);
     left: 1rem;
     right: 1rem;
     z-index: 10;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
   }
 
   .search-pill.open {
-    display: flex;
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
   }
 
   .search-pill .search-input {
     width: 100%;
+    font-size: 1rem; /* Better for mobile to prevent zoom */
   }
 
   .search-mobile-btn {
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .suggest-btn {

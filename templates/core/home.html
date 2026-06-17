@@ -67,18 +67,44 @@
 (function() {
   var input = document.getElementById('searchInput');
   var toggle = document.getElementById('searchToggle');
+  var clearBtn = document.getElementById('searchClear');
   var cards = document.querySelectorAll('.card');
   var countLabel = document.getElementById('countLabel');
   var totalCount = cards.length;
   var originalLabel = countLabel ? countLabel.textContent : '';
-
   var pill = document.getElementById('searchPill');
+
+  function updateSearch() {
+    var q = input.value.toLowerCase().trim();
+    var visible = 0;
+    
+    // Toggle clear button
+    if (clearBtn) {
+      clearBtn.classList.toggle('visible', q.length > 0);
+    }
+
+    cards.forEach(function(card) {
+      var title = card.querySelector('.card-title');
+      if (!title) return;
+      var match = !q || title.textContent.toLowerCase().includes(q);
+      card.style.display = match ? '' : 'none';
+      if (match) visible++;
+    });
+
+    if (countLabel) {
+      countLabel.textContent = q
+        ? visible + ' of ' + totalCount + ' video' + (totalCount !== 1 ? 's' : '') + ' match your search'
+        : originalLabel;
+    }
+  }
 
   if (toggle && pill) {
     toggle.addEventListener('click', function(e) {
       e.stopPropagation();
       pill.classList.toggle('open');
-      if (pill.classList.contains('open')) input.focus();
+      if (pill.classList.contains('open')) {
+        setTimeout(function() { input.focus(); }, 100);
+      }
     });
     document.addEventListener('click', function(e) {
       if (pill.classList.contains('open') && !e.target.closest('.search-pill') && !e.target.closest('.search-mobile-btn')) {
@@ -88,22 +114,20 @@
   }
 
   if (input) {
-    input.addEventListener('input', function() {
-      var q = this.value.toLowerCase().trim();
-      var visible = 0;
-      cards.forEach(function(card) {
-        var title = card.querySelector('.card-title');
-        if (!title) return;
-        var match = !q || title.textContent.toLowerCase().includes(q);
-        card.style.display = match ? '' : 'none';
-        if (match) visible++;
-      });
-      if (countLabel) {
-        countLabel.textContent = q
-          ? visible + ' of ' + totalCount + ' video' + (totalCount !== 1 ? 's' : '') + ' match your search'
-          : originalLabel;
-      }
+    input.addEventListener('input', updateSearch);
+  }
+
+  if (clearBtn) {
+    clearBtn.addEventListener('click', function() {
+      input.value = '';
+      updateSearch();
+      input.focus();
     });
+  }
+
+  // Initialize UI state
+  if (input && input.value) {
+    updateSearch();
   }
 })();
 </script>
