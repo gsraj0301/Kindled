@@ -72,15 +72,17 @@
   var totalCount = cards.length;
   var originalLabel = countLabel ? countLabel.textContent : '';
 
-  if (toggle && input) {
+  var pill = document.getElementById('searchPill');
+
+  if (toggle && pill) {
     toggle.addEventListener('click', function(e) {
       e.stopPropagation();
-      input.classList.toggle('open');
-      if (input.classList.contains('open')) input.focus();
+      pill.classList.toggle('open');
+      if (pill.classList.contains('open')) input.focus();
     });
     document.addEventListener('click', function(e) {
-      if (input.classList.contains('open') && !e.target.closest('.search-wrapper')) {
-        input.classList.remove('open');
+      if (pill.classList.contains('open') && !e.target.closest('.search-pill') && !e.target.closest('.search-mobile-btn')) {
+        pill.classList.remove('open');
       }
     });
   }
