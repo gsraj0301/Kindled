@@ -22,17 +22,17 @@
 </div>
 
 <p style="font-family: var(--font-body); color: var(--muted); font-size: 0.875rem; max-width: 36em; margin: 1.5rem auto; text-align: center; line-height: 1.6;">
-  Every video here is personally watched and picked by a fellow student. No algorithms, no paid promotions — just the best free resources I've found, curated for you.
+  Every video here is personally watched and picked by a fellow student — no algorithms, no paid promotions. Kindled grows because students like you share it, use it, and tell me what's missing. Got a topic you wish was here? Hit the <strong style="color: var(--accent);">Suggest a video</strong> button up top — every suggestion reaches me directly and I read every single one. The more you're involved, the better it gets for everyone.
 </p>
 
 <div class="grid-section">
   {% if show_recommended %}
-  <p class="count-label">🌟 {{ videos.count }} recommended video{{ videos.count|pluralize }} — must-watch picks</p>
+  <p class="count-label" id="countLabel">🌟 {{ videos.count }} recommended video{{ videos.count|pluralize }} — must-watch picks</p>
   {% else %}
-  <p class="count-label">{{ videos.count }} video{{ videos.count|pluralize }} — personally curated</p>
+  <p class="count-label" id="countLabel">{{ videos.count }} video{{ videos.count|pluralize }} — personally curated</p>
   {% endif %}
 
-  <div class="grid">
+  <div class="grid" id="videoGrid">
     {% for video in videos %}
     <a href="{% url 'video_detail' video.youtube_id %}" class="card">
       <div class="thumb">
@@ -61,13 +61,49 @@
     {% endfor %}
   </div>
 
-  <p style="font-family: var(--font-body); font-size: 0.875rem; color: var(--muted); text-align: center; margin-top: 1.5rem;">
-    Don't see what you're looking for?
-    <a href="{% url 'suggest' %}"
-       style="color: var(--accent); text-decoration: none;"
-       onmouseover="this.style.textDecoration='underline'"
-       onmouseout="this.style.textDecoration='none'">Suggest a video</a>
-  </p>
 </div>
+
+<script>
+(function() {
+  var input = document.getElementById('searchInput');
+  var toggle = document.getElementById('searchToggle');
+  var cards = document.querySelectorAll('.card');
+  var countLabel = document.getElementById('countLabel');
+  var totalCount = cards.length;
+  var originalLabel = countLabel ? countLabel.textContent : '';
+
+  if (toggle && input) {
+    toggle.addEventListener('click', function(e) {
+      e.stopPropagation();
+      input.classList.toggle('open');
+      if (input.classList.contains('open')) input.focus();
+    });
+    document.addEventListener('click', function(e) {
+      if (input.classList.contains('open') && !e.target.closest('.search-wrapper')) {
+        input.classList.remove('open');
+      }
+    });
+  }
+
+  if (input) {
+    input.addEventListener('input', function() {
+      var q = this.value.toLowerCase().trim();
+      var visible = 0;
+      cards.forEach(function(card) {
+        var title = card.querySelector('.card-title');
+        if (!title) return;
+        var match = !q || title.textContent.toLowerCase().includes(q);
+        card.style.display = match ? '' : 'none';
+        if (match) visible++;
+      });
+      if (countLabel) {
+        countLabel.textContent = q
+          ? visible + ' of ' + totalCount + ' video' + (totalCount !== 1 ? 's' : '') + ' match your search'
+          : originalLabel;
+      }
+    });
+  }
+})();
+</script>
 
 {% endblock %}

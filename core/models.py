@@ -20,7 +20,7 @@ class Video(models.Model):
     youtube_id = models.CharField(max_length=20, unique=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='videos')
     channel_name = models.CharField(max_length=255)
-    curator_note = models.TextField(max_length=500)
+    curator_note = models.TextField()
     date_added = models.DateTimeField(auto_now_add=True)
     embed_disabled = models.BooleanField(default=False)
     recommended = models.BooleanField(default=False)

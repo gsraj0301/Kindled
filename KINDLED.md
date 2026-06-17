@@ -37,6 +37,7 @@ kindled/
 │   │   └── main.css           # Responsive (mobile + desktop)
 │   ├── favicon/               # Favicon assets (ico, png, webmanifest)
 │   └── logo.png               # Site logo
+├── CREDITS.md                    # Contributor credits (logo by Kishore)
 ├── screenshots/
 │   ├── Kindled-website-preview.png
 │   └── favicon_io/            # Source favicon files
@@ -60,7 +61,7 @@ kindled/
 - Meta: ordering=['order'], verbose_name_plural='Categories'
 
 ### Video
-- title, youtube_id (unique), category (FK), channel_name, curator_note (500 chars), date_added (auto), embed_disabled, recommended
+- title, youtube_id (unique), category (FK), channel_name, curator_note (unlimited), date_added (auto), embed_disabled, recommended
 - Meta: ordering=['-date_added']
 
 ### Suggestion
@@ -106,12 +107,13 @@ kindled/
 - Write tests
 - Add more categories and videos
 - Add search results count
+- Make curator_note limit consistent in admin form
 
 ## Contributors
 - **Raj G.** — creator, developer, curator
 - **kieskishore-cyber** — designed the website logo & favicon
 
-## DB state (as of Jun 13 2026)
+## DB state (as of Jun 15 2026)
 - 7 Categories (Programming 💻, Web Dev 🌐, AI 🤖, Cybersecurity 🔐, Physics ⚛️, Math 📐, General 🧠)
-- 14 Videos (1 recommended)
+- 28 Videos (1 recommended)
 - 0 Suggestions
