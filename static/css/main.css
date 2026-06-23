@@ -32,15 +32,23 @@ nav {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1rem 2rem;
+  padding: 0.75rem 2rem;
   max-width: 1200px;
   margin: 0 auto;
+  position: relative; /* Context for mobile search absolute positioning */
+  min-height: 64px;
+}
+
+.nav-left {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
 }
 
 .nav-logo {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
   font-family: var(--font-display);
   font-weight: 600;
   font-size: 1.25rem;
@@ -49,9 +57,8 @@ nav {
 }
 
 .nav-logo img {
-  width: 34px;
-  height: 34px;
-  object-fit: contain;
+  height: 40px;
+  width: auto;
 }
 
 .nav-tagline {
@@ -59,97 +66,108 @@ nav {
   font-style: italic;
   font-weight: 300;
   color: var(--muted);
-  font-size: 0.8rem;
+  font-size: 0.9rem;
   text-align: center;
   flex: 1;
-  padding: 0 8px;
+  padding: 0 2rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-@media (min-width: 640px) {
-  .nav-tagline { font-size: 0.95rem; }
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  flex-shrink: 0;
 }
 
 .nav-actions {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 0.75rem;
 }
 
 .nav-icon-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background: none;
   border: none;
   color: var(--muted);
   cursor: pointer;
   padding: 8px;
-  border-radius: 8px;
-  transition: background 0.2s, color 0.2s;
+  border-radius: 50%;
+  transition: all 0.2s ease;
 }
 
 .nav-icon-btn:hover {
-  background: var(--border);
-  color: var(--text);
+  background: var(--accent-light);
+  color: var(--accent);
 }
 
 /* ── Search ── */
+.search-form {
+  display: flex;
+  align-items: center;
+}
+
 .search-pill {
   display: flex;
   align-items: center;
-  gap: 8px;
-  padding: 6px 12px;
+  gap: 10px;
+  padding: 0 16px;
+  height: 40px;
+  background: var(--surface);
   border: 1px solid var(--border);
   border-radius: 999px;
-  background: var(--surface);
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   cursor: text;
+  width: 200px; /* Default desktop width */
 }
 
 .search-pill:hover {
   border-color: var(--muted);
-  background: var(--bg);
 }
 
 .search-pill:focus-within {
+  width: 280px; /* Expand on focus */
   border-color: var(--accent);
-  box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.15);
-  background: var(--surface);
-}
-
-.search-pill:hover .search-pill-icon {
-  color: var(--text);
-  transform: scale(1.1);
+  box-shadow: 0 0 0 4px rgba(249, 115, 22, 0.1);
 }
 
 .search-pill-icon {
   flex-shrink: 0;
   color: var(--muted);
-  transition: all 0.2s ease;
+  transition: color 0.2s ease;
+}
+
+.search-pill:focus-within .search-pill-icon {
+  color: var(--accent);
 }
 
 .search-input {
+  flex: 1;
   border: none;
-  background: none;
+  background: transparent;
   outline: none;
   font-family: var(--font-body);
-  font-size: 0.875rem;
+  font-size: 0.9rem;
   color: var(--text);
-  width: 160px;
-  padding: 2px 0;
+  min-width: 0;
+  padding: 4px 0;
 }
 
 .search-input::placeholder {
   color: var(--muted);
-  transition: color 0.2s ease;
-}
-
-.search-pill:focus-within .search-input::placeholder {
-  color: #a1a1aa; /* slightly darker muted */
+  font-weight: 400;
 }
 
 .search-clear-btn {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 2px;
+  padding: 4px;
   border: none;
   background: none;
   color: var(--muted);
@@ -158,13 +176,12 @@ nav {
   transition: all 0.2s ease;
   opacity: 0;
   visibility: hidden;
-  transform: scale(0.8);
+  margin-right: -4px;
 }
 
 .search-clear-btn.visible {
   opacity: 1;
   visibility: visible;
-  transform: scale(1);
 }
 
 .search-clear-btn:hover {
@@ -174,30 +191,34 @@ nav {
 
 .search-mobile-btn {
   display: none;
-  transition: transform 0.2s ease;
-}
-
-.search-mobile-btn:active {
-  transform: scale(0.9);
 }
 
 .suggest-btn {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
   background: var(--accent);
   color: white;
   border: none;
-  padding: 8px 16px;
-  border-radius: 8px;
+  padding: 10px 18px;
+  border-radius: 999px;
   font-family: var(--font-body);
   font-size: 0.85rem;
   font-weight: 500;
   cursor: pointer;
-  transition: opacity 0.2s;
+  transition: all 0.2s ease;
+  white-space: nowrap;
 }
 
-.suggest-btn:hover { opacity: 0.85; }
+.suggest-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(249, 115, 22, 0.25);
+  opacity: 0.95;
+}
+
+.suggest-btn:active {
+  transform: translateY(0);
+}
 
 /* ── Pills ── */
 .pills-row {
@@ -622,24 +643,40 @@ nav {
 /* ── Responsive ── */
 @media (max-width: 639px) {
   nav {
-    padding: 1rem;
-    width: 100%;
+    padding: 0.75rem 1rem;
+    justify-content: space-between;
   }
 
-  .nav-tagline { display: none; }
+  .nav-tagline {
+    display: none;
+  }
+
+  .nav-right {
+    gap: 0.5rem;
+  }
+
+  .search-form {
+    display: contents; /* Allows search-pill to be absolute relative to nav */
+  }
 
   .search-pill {
-    display: flex;
     position: absolute;
-    top: calc(100% + 8px);
+    top: calc(100% - 4px); /* Sit right below nav */
     left: 1rem;
     right: 1rem;
-    z-index: 10;
+    width: auto;
+    max-width: none;
+    z-index: 100;
+    background: var(--surface);
+    box-shadow: 0 10px 25px -5px rgba(0,0,0,0.1), 0 8px 10px -6px rgba(0,0,0,0.05);
+    height: 48px;
+    padding: 0 16px;
+    border: 1px solid var(--border);
+    
     opacity: 0;
     visibility: hidden;
     transform: translateY(-10px);
     transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
   }
 
   .search-pill.open {
@@ -648,50 +685,53 @@ nav {
     transform: translateY(0);
   }
 
-  .search-pill .search-input {
-    width: 100%;
-    font-size: 1rem; /* Better for mobile to prevent zoom */
+  .search-pill:focus-within {
+    width: auto;
+    border-color: var(--accent);
   }
 
   .search-mobile-btn {
     display: flex;
-    align-items: center;
-    justify-content: center;
   }
 
   .suggest-btn {
-    font-size: 0;
-    padding: 8px;
-    gap: 0;
+    padding: 10px;
+    width: 40px;
+    height: 40px;
+    justify-content: center;
   }
+
+  .suggest-btn span {
+    display: none;
+  }
+
   .suggest-btn svg {
-    width: 16px;
-    height: 16px;
+    margin: 0;
+    width: 18px;
+    height: 18px;
   }
 
   .pills-row {
     padding: 0 1rem;
-    width: 100%;
-    max-width: 100%;
   }
 
   .grid-section {
     padding: 0 1rem;
-    width: 100%;
-    max-width: 100%;
+    margin: 1.5rem auto;
   }
-  .grid { gap: 1rem; }
 
-  .video-detail {
-    padding: 0 1rem;
-    max-width: 100%;
+  .grid {
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
   }
-  .video-info h1 { font-size: 1.25rem; }
 
-  .suggest-page { padding: 0 1rem; }
-  .suggest-success { padding: 0 1rem; }
+  .card-body {
+    padding: 0.85rem;
+  }
 
-  .no-embed-body { padding: 1rem; }
+  .video-info h1 {
+    font-size: 1.35rem;
+  }
 }
 
 @media (min-width: 640px) {

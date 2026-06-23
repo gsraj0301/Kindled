@@ -16,40 +16,44 @@
 <body>
 
 <nav>
-  <a href="{% url 'home' %}" class="nav-logo">
-    <img src="{% static 'logo.png' %}" alt="Kindled" width="34" height="34">
-    Kindled
-  </a>
+  <div class="nav-left">
+    <a href="{% url 'home' %}" class="nav-logo">
+      <img src="{% static 'logo.png' %}" alt="">
+    </a>
+  </div>
 
   <span class="nav-tagline">Kindling a fire for learning</span>
 
-  <form method="GET" action="{% url 'home' %}">
-    <div class="search-pill" id="searchPill">
-      <svg class="search-pill-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-        <circle cx="11" cy="11" r="8"></circle>
-        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-      </svg>
-      <input type="text" class="search-input" id="searchInput" name="q" value="{{ request.GET.q|default:'' }}" placeholder="Search videos…" autocomplete="off">
-      <button class="search-clear-btn" id="searchClear" title="Clear search" type="button" aria-label="Clear search">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-          <line x1="18" y1="6" x2="6" y2="18"></line>
-          <line x1="6" y1="6" x2="18" y2="18"></line>
+  <div class="nav-right">
+    <form method="GET" action="{% url 'home' %}" class="search-form">
+      <div class="search-pill" id="searchPill">
+        <svg class="search-pill-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+        <input type="text" class="search-input" id="searchInput" name="q" value="{{ request.GET.q|default:'' }}" placeholder="Search videos…" autocomplete="off">
+        <button class="search-clear-btn" id="searchClear" title="Clear search" type="button" aria-label="Clear search">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+    </form>
+
+    <div class="nav-actions">
+      <button class="nav-icon-btn search-mobile-btn" id="searchToggle" title="Search" type="button">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
         </svg>
       </button>
+      <button class="suggest-btn" onclick="window.location.href='{% url 'suggest' %}'">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/>
+        </svg>
+        <span>Suggest a video</span>
+      </button>
     </div>
-  </form>
-  <div class="nav-actions">
-    <button class="nav-icon-btn search-mobile-btn" id="searchToggle" title="Search" type="button">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
-      </svg>
-    </button>
-    <button class="suggest-btn" onclick="window.location.href='{% url 'suggest' %}'">
-      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/>
-      </svg>
-      Suggest a video
-    </button>
   </div>
 </nav>
 

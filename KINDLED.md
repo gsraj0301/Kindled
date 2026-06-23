@@ -73,6 +73,10 @@ kindled/
 - SuggestionAdmin: list_filter by status
 - Admin uses `format_html` for thumbnail (NOT deprecated `allow_tags`)
 
+## Logo history
+- **Jun 21** — Original PNG logo added (508×162)
+- **Jun 23** — Switched to JPEG, then back to PNG. CSS fixed to show logo at native aspect ratio (40px height, auto width) instead of squishing into 32×32. "Kindled" text removed from navbar; only logo image displayed now.
+
 ## Frontend — what exists
 - `templates/core/base.html` — sticky glassmorphism nav with logo (image), search bar, suggest button; favicon links, web manifest, theme-color meta tag
 - `templates/core/home.html` — explainer paragraph, filter pills (including 🌟 Recommended) + video grid with recommended badge overlay on thumbnails, empty state
@@ -113,7 +117,24 @@ kindled/
 - **Raj G.** — creator, developer, curator
 - **kieskishore-cyber** — designed the website logo & favicon
 
-## DB state (as of Jun 15 2026)
-- 7 Categories (Programming 💻, Web Dev 🌐, AI 🤖, Cybersecurity 🔐, Physics ⚛️, Math 📐, General 🧠)
-- 28 Videos (1 recommended)
+## DB state (as of Jun 20 2026)
+- 7 Categories (💻 Programming, 🗣️ Communication, 🌐 Web Development, 🎬 Video Editing, 🧠 Machine Learning, 🤖 Artificial Intelligence, 🎨 UI UX)
+- 14 Videos (1 recommended)
 - 0 Suggestions
+
+## Curator note tone guide (for opencode)
+
+Write in a warm, personal voice — not a dry review, but how you would describe the video to a friend who gets what you are about.
+
+**Structure:**
+- Open with a hook that names the real problem or feeling the video addresses (e.g. "Most videos teach X — this one actually teaches you Y.")
+- Build the middle with *why* the video works, not just what it covers. Use italics for emphasis on key insights.
+- End with a closing line that ties back to the viewer's growth or takeaway — something aspirational or quietly profound.
+
+**Style rules:**
+- Flowing paragraphs, no bullet points or lists
+- Occasional dash or *italics* for rhythm, not overdone
+- Make it feel handpicked, written by someone who genuinely loved the video
+- Reference the viewer directly ("you", "us students") — keep it relatable
+- When it fits, add a "secret" or "unlocked" flourish (e.g. "you have unlocked the secret that most learners never realise exists")
+- Warm, not hype-y. Think "thoughtful recommendation from a senior who gets it."
