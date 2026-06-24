@@ -8,7 +8,7 @@
     </a>
   </p>
   <p>
-    <img alt="Visits" src="https://img.shields.io/badge/visits-1500%2B-brightgreen" />
+    <img alt="Visits" src="https://img.shields.io/badge/visits-5000%2B-brightgreen" />
     <img alt="Python" src="https://img.shields.io/badge/python-3.12-blue" />
     <img alt="Django" src="https://img.shields.io/badge/django-6.0.5-green" />
   </p>
