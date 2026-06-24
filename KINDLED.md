@@ -122,19 +122,23 @@ kindled/
 - 14 Videos (1 recommended)
 - 0 Suggestions
 
+## Curator notes
+
+I write each curator note myself and paste it in. The note is always for *me* to copy — so when opencode generates one, it should be ready to copy-paste straight into the admin panel. Keep it tight; I will tweak later if I need to.
+
 ## Curator note tone guide (for opencode)
 
-Write in a warm, personal voice — not a dry review, but how you would describe the video to a friend who gets what you are about.
+Tight, conversational, no fluff. Write like you are telling a friend why this video is worth 10 minutes of their life.
 
 **Structure:**
-- Open with a hook that names the real problem or feeling the video addresses (e.g. "Most videos teach X — this one actually teaches you Y.")
-- Build the middle with *why* the video works, not just what it covers. Use italics for emphasis on key insights.
-- End with a closing line that ties back to the viewer's growth or takeaway — something aspirational or quietly profound.
+- One short paragraph to hook — name the real problem the video solves, in a way a college student instantly recognises.
+- One paragraph on what makes it work — specific techniques or takeaways, with a dash of *italics* for emphasis. Keep it concrete, not abstract.
+- Close with a line that makes them want to watch right now.
 
 **Style rules:**
-- Flowing paragraphs, no bullet points or lists
-- Occasional dash or *italics* for rhythm, not overdone
-- Make it feel handpicked, written by someone who genuinely loved the video
-- Reference the viewer directly ("you", "us students") — keep it relatable
-- When it fits, add a "secret" or "unlocked" flourish (e.g. "you have unlocked the secret that most learners never realise exists")
-- Warm, not hype-y. Think "thoughtful recommendation from a senior who gets it."
+- No bullet points, no lists, no headings inside the note. Just flowing paragraphs.
+- Short sentences. Tight pacing. Think *"this video fixes that"* energy.
+- Dashes and italics for rhythm, but don't overdo it.
+- Call them "you" directly. Make it feel like a rec from a senior who actually gets student life.
+- If it fits, drop a line like *"you will use this the same day"* or something that makes the payoff real.
+- Warm but not hype-y. No "transform your life" — just practical, relatable, and useful.
